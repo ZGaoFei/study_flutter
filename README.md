@@ -1,16 +1,19 @@
 # study_flutter
 
-A new Flutter project.
+## list view
 
-## Getting Started
+    监听ListView的滑动
+    监听ListView当前屏幕显示的第一个和最后一个
 
-This project is a starting point for a Flutter application.
+## page view
 
-A few resources to get you started if this is your first Flutter project:
+    实现PageView缓存页面状态
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## simple provider
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+    根据《Flutter实战 第二版》实现简单的Provider，用于夸组件通信
+
+## Provider
+
+    测试Provider框架使用
+
