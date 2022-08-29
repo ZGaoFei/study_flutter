@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:study_flutter/animation/animation_widgets.dart';
 import 'package:study_flutter/animation/radial_expansion_demo.dart';
+import 'package:study_flutter/item_main.dart';
 import 'package:study_flutter/list_view_listener/list_view_customer.dart';
-import 'package:study_flutter/list_view_listener/list_view_main.dart';
 import 'package:study_flutter/list_view_listener/list_view_notification.dart';
 import 'package:study_flutter/list_view_listener/list_view_scroll_controller.dart';
 import 'package:study_flutter/page_view/page_view.dart';
 import 'package:study_flutter/provider/simple_provider/shop_widget.dart';
-import 'package:study_flutter/provider/test_provider/provider_main.dart';
 import 'package:study_flutter/provider/test_provider/widget/change_notification_proxy_provider_widget.dart';
 import 'package:study_flutter/provider/test_provider/widget/change_notification_widget.dart';
 import 'package:study_flutter/provider/test_provider/widget/future_provider_widget.dart';
@@ -16,39 +16,56 @@ import 'package:study_flutter/provider/test_provider/widget/stream_provider_widg
 
 Map<String, WidgetBuilder> getRoutes() {
   Map<String, WidgetBuilder> map = {};
-  var titles = getTitles();
-  for (var element in titles) {
-    map[element.scheme] = (context) => element.widget;
-  }
-  var listView = getListView();
-  for (var element in listView) {
-    map[element.scheme] = (context) => element.widget;
-  }
-  var providers = getProviders();
-  for (var element in providers) {
-    map[element.scheme] = (context) => element.widget;
+  var routes = getAllRoutes();
+  for (var route in routes) {
+    for (var element in route) {
+      map[element.scheme] = (context) => element.widget;
+    }
   }
   return map;
 }
 
+///所有的route
+List<List<Route>> getAllRoutes() {
+  return [
+    getTitles(),
+    getListView(),
+    getProviders(),
+    getAnimationView(),
+  ];
+}
+
+///一级页标题
 List<Route> getTitles() {
   return [
-    Route("radial_expansion", "radial expansion hero",
-        const RadialExpansionDemo()),
+    ///Animation
+    Route("animation", "Animation test",
+        ItemMain(title: 'Animation', routes: getAnimationView())),
 
     ///ListView
     Route("list_view", "ListView",
-        const ListViewMain()),
+        ItemMain(title: 'ListView', routes: getListView())),
 
     Route("page_view", "Page view", const PageViewWidget()),
     Route("simple_provider", "Simple provider test", const ShopWidget()),
 
     ///provider
-    Route("provider_test", "Provider test", const ProviderMain(),
+    Route("provider_test", "Provider test",
+        ItemMain(title: 'Provider', routes: getProviders()),
         color: Colors.lightBlue),
   ];
 }
 
+///二级页动画标题
+List<Route> getAnimationView() {
+  return [
+    Route("radial_expansion", "radial expansion hero",
+        const RadialExpansionDemo()),
+    Route("animation_widgets", "预置Animation widget", const AnimationWidgets()),
+  ];
+}
+
+///二级页listView标题
 List<Route> getListView() {
   return [
     Route("list_view_scroll_controller", "ListView scrollController",
@@ -59,6 +76,7 @@ List<Route> getListView() {
   ];
 }
 
+///二级页provider标题
 List<Route> getProviders() {
   return [
     Route("change_notification_provider", "ChangeNotificationProvider test",

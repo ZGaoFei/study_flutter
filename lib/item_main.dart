@@ -1,24 +1,28 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Route;
 import 'package:study_flutter/routes.dart';
 
-class ProviderMain extends StatelessWidget {
-  const ProviderMain({Key? key}) : super(key: key);
+///提供通用的item列表页
+class ItemMain extends StatelessWidget {
+  ItemMain({Key? key, required this.title, required this.routes}) : super(key: key);
+
+  String title;
+  List<Route> routes;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("provider"),
+        title: Text(title),
       ),
       body: ListView.separated(
           itemBuilder: itemBuilder,
           separatorBuilder: separatorBuilder,
-          itemCount: getProviders().length),
+          itemCount: routes.length),
     );
   }
 
   Widget itemBuilder(BuildContext context, int index) {
-    var item = getProviders()[index];
+    var item = routes[index];
     return GestureDetector(
       onTap: () {
         Navigator.of(context).pushNamed(item.scheme);
