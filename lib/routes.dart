@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:study_flutter/animation/animation_widgets.dart';
 import 'package:study_flutter/animation/radial_expansion_demo.dart';
+import 'package:study_flutter/customer_widget/customer_test.dart';
+import 'package:study_flutter/customer_widget/gobang_test.dart';
 import 'package:study_flutter/item_main.dart';
 import 'package:study_flutter/list_view_listener/list_view_customer.dart';
 import 'package:study_flutter/list_view_listener/list_view_notification.dart';
@@ -13,6 +15,7 @@ import 'package:study_flutter/provider/test_provider/widget/future_provider_widg
 import 'package:study_flutter/provider/test_provider/widget/multi_provider_widget.dart';
 import 'package:study_flutter/provider/test_provider/widget/proxy_provider_widget.dart';
 import 'package:study_flutter/provider/test_provider/widget/stream_provider_widget.dart';
+import 'package:study_flutter/web_view/web_view_test.dart';
 
 Map<String, WidgetBuilder> getRoutes() {
   Map<String, WidgetBuilder> map = {};
@@ -32,6 +35,7 @@ List<List<Route>> getAllRoutes() {
     getListView(),
     getProviders(),
     getAnimationView(),
+    getCustomer(),
   ];
 }
 
@@ -53,6 +57,11 @@ List<Route> getTitles() {
     Route("provider_test", "Provider test",
         ItemMain(title: 'Provider', routes: getProviders()),
         color: Colors.lightBlue),
+
+    ///webview
+    Route("web_view_test", "WebView test", const WebViewTest()),
+
+    Route("customer_view", "Customer widget", ItemMain(title: 'Customer widget', routes: getCustomer())),
   ];
 }
 
@@ -99,6 +108,14 @@ List<Route> getProviders() {
         "ChangeNotificationProxyProvider test",
         const ChangeNotificationProxyProviderWidget(),
         color: Colors.lightBlue),
+  ];
+}
+
+///二级页listView标题
+List<Route> getCustomer() {
+  return [
+    Route("customer_widget", "Customer widget", const CustomerTest()),
+    Route("gobang", "Gobang", const GobangTest()),
   ];
 }
 
