@@ -3,6 +3,7 @@ import 'package:study_flutter/animation/animation_widgets.dart';
 import 'package:study_flutter/animation/radial_expansion_demo.dart';
 import 'package:study_flutter/customer_widget/customer_test.dart';
 import 'package:study_flutter/customer_widget/gobang_test.dart';
+import 'package:study_flutter/customer_widget/progress_indicator_test.dart';
 import 'package:study_flutter/item_main.dart';
 import 'package:study_flutter/list_view_listener/list_view_customer.dart';
 import 'package:study_flutter/list_view_listener/list_view_notification.dart';
@@ -111,11 +112,12 @@ List<Route> getProviders() {
   ];
 }
 
-///二级页listView标题
+///二级页Customer widget
 List<Route> getCustomer() {
   return [
     Route("customer_widget", "Customer widget", const CustomerTest()),
     Route("gobang", "Gobang", const GobangTest()),
+    Route("progress_indicator", "Progress Indicator", const ProgressIndicatorTest()),
   ];
 }
 
